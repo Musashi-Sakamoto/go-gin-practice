@@ -1,0 +1,18 @@
+default: &default
+  environment:
+    GO111MODULE: "on"
+
+version: 2
+jobs:
+  build:
+    <<: [*default]
+    docker:
+      - image: circleci/golang:1.11
+    steps:
+      - checkout
+      - run: go mod download
+      - run:
+          name: Run test
+          command: |
+            eval $(cat .env)
+            go test ./...

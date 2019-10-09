@@ -4,6 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"app/pkg/setting"
 	"app/routers/api/v1"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+	_ "app/docs"
 )
 
 func InitRouter() *gin.Engine {
@@ -11,6 +14,8 @@ func InitRouter() *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	gin.SetMode(setting.Config.RunMode)
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	
 	apiv1 := r.Group("/api/v1")
 	{
