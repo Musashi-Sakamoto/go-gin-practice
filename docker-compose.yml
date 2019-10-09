@@ -13,16 +13,16 @@ services:
     depends_on: 
       - db
   db:
-    image: mysql:latest
+    image: postgres:latest
     container_name: go_db
     volumes: 
-      - ./mysql_data:/var/lib/mysql
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d
     ports:
-      - 3306:3306
+      - 5432:5432
     environment: 
-      MYSQL_ROOT_PASSWORD: docker_pwd
-      MYSQL_DATABASE: docker_db
-      MYSQL_USER: docker_user
-      MYSQL_PASSWORD: docker_user_pwd
+      POSTGRES_DB: blog
+      POSTGRES_USER: docker_user
+      POSTGRES_PASSWORD: docker_user_pwd
 volumes: 
-  mysql_data:
+  postgres_data:

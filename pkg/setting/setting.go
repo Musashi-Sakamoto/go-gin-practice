@@ -8,10 +8,13 @@ import (
 )
 
 type DBConfig struct {
-	DBHost   string `envconfig:"DBHost"`
-	Username string `envconfig:"Username"`
-	Password string `envconfig:"Password"`
-	Database string `envconfig:"Database"`
+	DBType      string `envconfig:"DBType"`
+	DBHost      string `envconfig:"DBHost"`
+	DBPort      string `envconfig:"DBPort"`
+	DBUser      string `envconfig:"DBUser"`
+	DBPassword  string `envconfig:"DBPassword"`
+	DBName      string `envconfig:"DBName"`
+	TablePrefix string `envconfig:"TABLE_PREFIX"`
 }
 
 type ServerConfig struct {
